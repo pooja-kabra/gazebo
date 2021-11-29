@@ -48,12 +48,13 @@ void Walker::intialize(ros::NodeHandle n) {
 }
 
 void Walker::callBackLaser(const sensor_msgs::LaserScan::ConstPtr  &scan) {
-    if (scan->ranges[0] < 0.5 || scan->ranges[325] < 0.5 || scan->ranges[35] < 0.5) {
-        twist.linear.z = 1.0;
+    if (scan->ranges[0] < 0.5 || scan->ranges[335] < 0.5 || scan->ranges[25] < 0.5) {
+        twist.angular.z = 0.6;
+        twist.linear.x = 0;
         walk_publish.publish(twist);
     } else {
         twist.linear.z = 0;
-        twist.linear.x = 0.6;
+        twist.linear.x = 0.4;
         walk_publish.publish(twist);
     }
 }

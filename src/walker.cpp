@@ -28,26 +28,32 @@
  *
  */
 
-#ifndef INCLUDE_WALKER_WALKER_HPP_
-#define INCLUDE_WALKER_HPP_
-
 #include <ros/ros.h>
-#include <sensor_msgs/LaserScan.h>
-#include <std_msgs/String.h>
-#include <geometry_msgs/Twist.h>
-#include <iostream>
-
-class Walker{
- private:
-    ros::Publisher walk_publish;
-    geometry_msgs::Twist twist;
-    ros::Subscriber laser_sub;
- public:
-    Walker();
-    void callBackLaser(const sensor_msgs::LaserScan::ConstPtr &scan);
-    void intialize(ros::NodeHandle n);
-    ~Walker();
-};
+#include <vector>
+#include <walker/walker.hpp>
 
 
-#endif  // WALKER_SRC_WALKER_INCLUDE_WALKER_HPP
+Walker::Walker() {
+    twist.linear.x = 0;
+    twist.linear.y = 0;
+    twist.linear.z = 0;
+}
+
+Walker::~Walker() {}
+
+void Walker::intialize(ros::NodeHandle n) {
+    walk_publish = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
+    laser_sub = n.subscribe("/scan", 10, &Walker::callBackLaser, this);
+    walk_publish.publish(twist);
+}
+
+void Walker::callBackLaser(const sensor_msgs::LaserScan::ConstPtr  &scan) {
+    if (scan->ranges[0] < 0.5 || scan->ranges[325] < 0.5 || scan->ranges[35] < 0.5) {
+        twist.linear.z = 1.0;
+        walk_publish.publish(twist);
+    } else {
+        twist.linear.z = 0;
+        twist.linear.x = 0.6;
+        walk_publish.publish(twist);
+    }
+}

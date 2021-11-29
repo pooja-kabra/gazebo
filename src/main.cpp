@@ -28,26 +28,13 @@
  *
  */
 
-#ifndef INCLUDE_WALKER_WALKER_HPP_
-#define INCLUDE_WALKER_HPP_
-
 #include <ros/ros.h>
-#include <sensor_msgs/LaserScan.h>
-#include <std_msgs/String.h>
-#include <geometry_msgs/Twist.h>
-#include <iostream>
+#include <walker/walker.hpp>
 
-class Walker{
- private:
-    ros::Publisher walk_publish;
-    geometry_msgs::Twist twist;
-    ros::Subscriber laser_sub;
- public:
-    Walker();
-    void callBackLaser(const sensor_msgs::LaserScan::ConstPtr &scan);
-    void intialize(ros::NodeHandle n);
-    ~Walker();
-};
-
-
-#endif  // WALKER_SRC_WALKER_INCLUDE_WALKER_HPP
+int main(int argc, char **argv) {
+    ros::init(argc, argv, "walker");
+    ros::NodeHandle nh;
+    Walker walker;
+    walker.intialize(nh);
+    ros::spin();
+}

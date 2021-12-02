@@ -51,7 +51,7 @@ This avoids the need to source every time one needs to use workspace's packages.
 
 Other dependency for this repository is *turtlebot* packages which allow the use of turtlebot in gazebo. Please follow the instructions given below to install the packages:
 ```
-<home> sudo apt-get install ros-kinetic-turtlebot-*
+<home> sudo apt-get install ros-melodic-turtlebot-*
 ```
 The command above installs all turtlebot packages instead of going through each of them one at a time. 
 

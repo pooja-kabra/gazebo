@@ -78,7 +78,7 @@ Please note here that it is not necessary to start *rosmaster* node while using 
 
 `turtlebot_walker` launch file of this package accepts a flag `record` that can be used to record the bag file which will record all the data that is being published. By default, the launch file will not record a *bag* file. It will save the file in `results` directory. This can be done using following commands:
 ```
-<home>$ roslaunch walker turtlebot_walker.launch record:=true
+<home>$ roslaunch walker walker.launch record:=true
 ```
 
 >NOTE: The launch file doesn't record any data related to *camera*.
@@ -86,7 +86,7 @@ Please note here that it is not necessary to start *rosmaster* node while using 
 ### Playback *bag* file
 The provided sample bag file or any recorded bag file using the instructions provided above can be played by following the commands given below:
 ```
-<home>$ cd <worskpace>/src/turtlebot_walker/results
+<home>$ cd <worskpace>/src/walker/results
 <../results>$ rosbag play walker.bag
 ```
 

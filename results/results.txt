@@ -1,0 +1,17 @@
+
+CPP-CHECK results:  
+
+
+Checking scripts/main.cpp...
+1/2 files checked 38% done
+Checking scripts/walker.cpp...
+2/2 files checked 100% done
+
+CPP-LINT results: 
+
+
+Done processing ./src/walker/include/walker.hpp
+./src/walker/scripts/main.cpp:31:  Found C system header after other header. Should be: main.h, c system, c++ system, other.  [build/include_order] [4]
+Done processing ./src/walker/src/main.cpp
+Done processing ./src/walker/src/walker.cpp
+Total errors found: 1
